@@ -1,0 +1,26 @@
+<ion-navbar *navbar>
+  <ion-title>
+    Freshly Pressed
+  </ion-title>
+</ion-navbar>
+
+<ion-content class="home">
+  <button (click)="retrieve()">Get Posts</button>
+<!--    <h2 [hidden]="!flag">Pull down to start</h2>-->
+    <ion-refresher (refresh)="retrieve($event)">
+        </ion-refresher>
+    <ion-card *ngFor="#item of data">
+    <ion-item>
+        <ion-avatar item-left>
+        <img src="{{item.author.avatar_URL}}">
+        </ion-avatar>
+        <ion-card-title>{{item.author.nice_name}}</ion-card-title>
+        <p><a href="{{item.author.URL}}">{{item.author.URL}}</a></p>
+        </ion-item>
+        <ion-card-content>
+        <h2>{{item.title}}</h2>
+            <div [innerHTML] = "'<p>' + item.content + '</p>'"></div>
+        </ion-card-content>
+    </ion-card>
+        
+</ion-content>
